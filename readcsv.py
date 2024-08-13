@@ -1,8 +1,10 @@
+from collections import namedtuple
 import csv
 
-with open('products.csv', newline='') as csvfile:
-    spamreader = csv.reader(csvfile, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
-    for row in spamreader:
-        for i in row:
-            print(i, type(i).__name__, end=' | ')
-        print()
+products = namedtuple('products', 'Product, Value, Price')
+
+for emp in map(products._make, csv.reader(open("products.csv", newline=''), delimiter=';', quoting=csv.QUOTE_NONNUMERIC)):
+    print(emp)
+    #print(emp.Product, emp.Value, emp.Price)
+    
+ 
